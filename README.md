@@ -14,3 +14,7 @@ https://drive.google.com/drive/u/0/folders/1ZG2nLXPj1gu2lyJtXJ5RSIi19lZIbY6j
 1. Push all updates which are currently local to your computer.
 2. Git Pull
 3. Run the Program
+
+
+### Commands to remember for terminal pushing & pulling
+1. git pull --rebase (grabs others changes and sends your changes too --> fake merging of changes)
