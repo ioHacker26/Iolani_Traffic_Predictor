@@ -11,28 +11,23 @@ export default function App() {
   const [font, setFont] = useState('system-ui');
   const [glassEffect, setGlassEffect] = useState(false);
 
-  const calculateWaitTime = () => {
-    const arrival = new Date(`2000-01-01 ${arrivalTime}`);
-    const start = new Date(`2000-01-01 ${startTime}`);
-    const end = new Date(`2000-01-01 ${endTime}`);
-    const cars = parseInt(carCount) || 0;
+  const requestAPI = () => {
+  const url =
+    "http://127.0.0.1:5000/api/__Ortega___/traffic" +
+    "?arrivalTime=" + arrivalTime +
+    "&startTime=" + startTime +
+    "&endTime=" + endTime +
+    "&carCount=" + carCount;
 
-    const totalMinutes = (end.getTime() - start.getTime()) / (1000 * 60);
-    const carsPerMinute = cars / totalMinutes;
-    
-    let position = 0;
-    if (arrival < start) {
-      position = 1;
-    } else if (arrival > end) {
-      position = cars;
-    } else {
-      const minutesSinceStart = (arrival.getTime() - start.getTime()) / (1000 * 60);
-      position = Math.floor(minutesSinceStart * carsPerMinute);
-    }
-
-    const estimatedWait = Math.max(0, Math.floor(position * 1.5));
-    setWaitTime(estimatedWait);
-  };
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      setWaitTime(data.prediction);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
   return (
     <div className={`app ${glassEffect ? 'glass-effect' : ''}`} style={{ fontFamily: font }}>
@@ -115,7 +110,7 @@ export default function App() {
                 />
               </div>
 
-              <button onClick={calculateWaitTime} className="calc-btn">
+              <button onClick={requestAPI} className="calc-btn">
                 Calculate Wait Time
               </button>
 
