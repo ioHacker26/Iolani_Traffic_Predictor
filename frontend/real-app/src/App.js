@@ -11,23 +11,47 @@ export default function App() {
   const [font, setFont] = useState('system-ui');
   const [glassEffect, setGlassEffect] = useState(false);
 
-  const requestAPI = () => {
-  const url =
-    "http://127.0.0.1:5000/api/__Ortega___/traffic" +
-    "?arrivalTime=" + arrivalTime +
-    "&startTime=" + startTime +
-    "&endTime=" + endTime +
-    "&carCount=" + carCount;
+  function timeToUnix(timeString) {
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      setWaitTime(data.prediction);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+    const [time, modifier] = timeString.split(" ");
+    let [hours, minutes] = time.split(":").map(Number);
+  
+    if (modifier === "PM" && hours !== 12) {
+      hours += 12;
+    }
+  
+    if (modifier === "AM" && hours === 12) {
+      hours = 0;
+    }
+  
+    const date = new Date("2026-01-21T00:00:00");
+  
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(0);
+  
+    return Math.floor(date.getTime() / 1000);
+  }
+
+  const requestAPI = () => {
+
+    const unixTime = timeToUnix(arrivalTime);
+  
+    console.log("Arrival time:", arrivalTime);
+    console.log("Unix time:", unixTime);
+  
+    const url = "http://127.0.0.1:5000/api/seant/test?unix_time=" + unixTime;
+  
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Prediction:", data.prediction);
+        setWaitTime(data.prediction);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className={`app ${glassEffect ? 'glass-effect' : ''}`} style={{ fontFamily: font }}>
