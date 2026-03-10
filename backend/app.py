@@ -88,8 +88,24 @@ def run_test():
 # you can change api route names to be whatever you want
 @app.route('/api/seant/test', methods=['GET'])
 def get_prediction():
-    predicted = run_test()
-    return jsonify({"success": True, "prediction": predicted})
+
+    unix_time = int(request.args.get("unix_time"))
+    #unix_time = 1769014800
+    print(unix_time)
+    midnight_unix = 1768989600  # Jan 21 2026 00:00:00
+
+    seconds_since_midnight = unix_time - midnight_unix
+
+    input_data = {
+        "seconds_since_midnight": seconds_since_midnight
+    }
+
+    predicted = predict(input_data)
+
+    print("Seconds since midnightL:", seconds_since_midnight)
+    
+    return jsonify({"success": True, "prediction": round(predicted/60, 2)})
+
 
 # TODO 7: Test it out by running this file (as you would run any python file)
 # and then paste this url into your browser, replacing routeName with the route 
