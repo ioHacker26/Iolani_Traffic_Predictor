@@ -73,7 +73,7 @@ export default function App() {
                 <label>Your Arrival Time</label>
                 <input 
                   type="time" 
-                  value={arrivalTime}
+                  value={arrivalTime/60}
                   onChange={(e) => setArrivalTime(e.target.value)}
                   className="input"
                 />
