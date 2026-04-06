@@ -112,28 +112,6 @@ export default function App() {
                   className="input"
                 />
               </div>
-
-              <div className="form-group">
-                <label>Drop-Off End Time</label>
-                <input 
-                  type="time" 
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  className="input"
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Expected Car Count</label>
-                <input 
-                  type="number" 
-                  value={carCount}
-                  onChange={(e) => setCarCount(e.target.value)}
-                  className="input"
-                  placeholder="150"
-                />
-              </div>
-
               <button onClick={requestAPI} className="calc-btn">
                 Calculate Wait Time
               </button>
@@ -194,37 +172,19 @@ export default function App() {
               <div className="team-grid">
                 <div className="team-card">
                   <div className="team-avatar">JD</div>
-                  <h3>Jane Doe</h3>
+                  <h3>Anaïs Ortega</h3>
                   <p className="team-role">Lead Developer</p>
                   <p className="team-bio">
-                    Full-stack engineer passionate about solving real-world problems with technology.
-                  </p>
-                </div>
-
-                <div className="team-card">
-                  <div className="team-avatar">JS</div>
-                  <h3>John Smith</h3>
-                  <p className="team-role">UX Designer</p>
-                  <p className="team-bio">
-                    Designer focused on creating intuitive mobile experiences for busy parents.
-                  </p>
-                </div>
-
-                <div className="team-card">
-                  <div className="team-avatar">MJ</div>
-                  <h3>Maria Johnson</h3>
-                  <p className="team-role">Data Analyst</p>
-                  <p className="team-bio">
-                    Traffic pattern expert developing algorithms for accurate time predictions.
+                    Anaïs studies Economics and is excited to apply machine learning foundations to deep learning projects.
                   </p>
                 </div>
 
                 <div className="team-card">
                   <div className="team-avatar">RW</div>
-                  <h3>Robert Williams</h3>
-                  <p className="team-role">Product Manager</p>
+                  <h3>Sean Tumbagon</h3>
+                  <p className="team-role">Backend Developer</p>
                   <p className="team-bio">
-                    Parent of three with firsthand experience in school drop-off chaos.
+                    Sean loves to play videogames and is very passionate about learning.
                   </p>
                 </div>
               </div>
