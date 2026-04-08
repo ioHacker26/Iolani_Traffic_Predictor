@@ -40,7 +40,7 @@ export default function App() {
     console.log("Arrival time:", arrivalTime);
     console.log("Unix time:", unixTime);
   
-    const url = "http://127.0.0.1:5000/api/seant/test?unix_time=" + unixTime;
+    const url = "http://34.143.146.60:5000/api/seant/test?unix_time=" + unixTime;
   
     fetch(url)
       .then((response) => response.json())
