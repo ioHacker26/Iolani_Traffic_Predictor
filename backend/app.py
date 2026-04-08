@@ -114,4 +114,4 @@ def get_prediction():
 # ------------------------------- MAIN ----------------------------------------
 if __name__ == '__main__':
     run_test() # Runs your test code
-    app.run() # creates your api at http://127.0.0.1:5000
+    app.run(host = '0.0.0.0', port = 5000) # creates your api at http://127.0.0.1:5000
